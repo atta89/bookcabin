@@ -69,6 +69,7 @@ function App() {
             } else {
               await generate(values)
                 .then(() => {
+                  getVoucher();
                   handleModal();
                   enqueueSnackbar("Voucher generated successfully", {
                     variant: "success",
@@ -160,7 +161,7 @@ function App() {
             </Box>
           ))}
         </Box>
-        {!data && (
+        {data?.length === 0 && (
           <Box
             mt={2}
             height="100%"
