@@ -1,6 +1,13 @@
 # Use official Golang image
 FROM golang:1.22-alpine
 
+# Enable CGO for sqlite
+ENV CGO_ENABLED=1
+
+# Install dependencies
+RUN sed -i 's/dl-cdn.alpinelinux.org/ftp.tsukuba.wide.ad.jp/g' /etc/apk/repositories \
+    && apk add --no-cache gcc musl-dev
+
 # Set working directory
 WORKDIR /app
 
